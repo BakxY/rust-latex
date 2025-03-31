@@ -8,7 +8,9 @@
 
 mod menu;
 mod files;
+mod config;
 
 fn main() {
     menu::display_template_selection();
+    config::read_config();
 }
