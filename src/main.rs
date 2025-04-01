@@ -13,5 +13,4 @@ mod config;
 fn main() {
     let _ = files::get_templates();
     menu::display_template_selection();
-    config::read_config();
 }
