@@ -1,3 +1,4 @@
+use crate::config;
 /**
  * @file menu.rs
  * @brief A lib file to handle all menus
@@ -5,9 +6,7 @@
  * @version v1.0.0
  * @author Severin Sprenger (BakxY)
  */
-
 use crate::files;
-use crate::config;
 
 pub fn display_template_selection() {
     println!("-------------------- RUST-LATEX --------------------\n");
@@ -20,8 +19,9 @@ pub fn display_template_selection() {
 fn display_all_templates() {
     let all_templates = files::get_templates();
 
-    for i in 0 .. all_templates.len() {
-        let human_readable = config::get_human_readable_name(all_templates.get(i).unwrap().to_string());
+    for i in 0..all_templates.len() {
+        let human_readable =
+            config::get_human_readable_name(all_templates.get(i).unwrap().to_string());
 
         println!("  {}. {}", i + 1, human_readable);
     }

@@ -1,3 +1,6 @@
+mod config;
+mod files;
+mod menu;
 /**
  * @file main.rs
  * @brief The main source file of the rust-latex project
@@ -5,10 +8,6 @@
  * @version v1.0.0
  * @author Severin Sprenger (BakxY)
  */
-
-mod menu;
-mod files;
-mod config;
 
 fn main() {
     menu::display_template_selection();

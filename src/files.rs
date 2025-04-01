@@ -5,7 +5,6 @@
  * @version v1.0.0
  * @author Severin Sprenger (BakxY)
  */
-
 use std::fs;
 
 const TEMPLATE_DIR: &str = "templates/";
@@ -19,8 +18,7 @@ pub fn get_templates() -> Vec<String> {
 
     for entry in fs::read_dir("templates").unwrap() {
         let entry = entry.unwrap();
-        if entry.path().is_dir()
-        {
+        if entry.path().is_dir() {
             let path = entry.path();
             let filename = path.file_name().unwrap();
             let filename_str = filename.to_str().unwrap();
