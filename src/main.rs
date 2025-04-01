@@ -1,5 +1,3 @@
-use config::get_human_readable_name;
-
 /**
  * @file main.rs
  * @brief The main source file of the rust-latex project
@@ -14,5 +12,6 @@ mod config;
 
 fn main() {
     menu::display_template_selection();
-    get_human_readable_name("letter".to_string());
+    config::get_human_readable_name("letter".to_string());
+    config::get_all_template_fields("letter".to_string());
 }
