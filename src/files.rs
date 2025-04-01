@@ -7,17 +7,18 @@
  */
 
 use std::fs;
-use std::io;
 
-pub fn get_template_location() -> &'static str {
-    return "Template path: ";
+const TEMPLATE_DIR: &str = "templates/";
+
+pub fn get_template_location() -> String {
+    return TEMPLATE_DIR.to_string();
 }
 
-pub fn get_templates() -> io::Result<Vec<String>> {
+pub fn get_templates() -> Vec<String> {
     let mut templates: Vec<String> = Vec::new();
 
-    for entry in fs::read_dir("templates")? {
-        let entry = entry?;
+    for entry in fs::read_dir("templates").unwrap() {
+        let entry = entry.unwrap();
         if entry.path().is_dir()
         {
             let path = entry.path();
@@ -28,5 +29,5 @@ pub fn get_templates() -> io::Result<Vec<String>> {
         }
     }
 
-    Ok(templates)
+    return templates;
 }

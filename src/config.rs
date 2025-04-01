@@ -6,20 +6,14 @@
  * @author Severin Sprenger (BakxY)
  */
 
-use std::fs;
+use std::{fs, path::Path};
+use crate::files;
 
-static mut RAW_CONFIG: Option<String> = None;
+pub fn get_human_readable_name(template_name: String) -> String
+{
+    let base_path = files::get_template_location();
 
-pub fn read_config() {
-    match fs::read_to_string("res/rust-latex.conf") {
-        Ok(content) => {
-            unsafe {
-                RAW_CONFIG = Some(content);
-            }
-        }
-        Err(error) => {
-            eprintln!("Error while reading config file!");
-            eprint!("{}", error);
-        }
-    }
+    let path_to_config = Path::new(base_path.as_str()).join(template_name.clone()).join(template_name + ".conf");
+
+    return "".to_string();
 }
