@@ -63,7 +63,7 @@ pub fn get_all_template_fields(template_name: String) -> Vec<ReplaceField> {
         let line = line.to_string();
 
         if line.starts_with("GROUP ") {
-            current_group = line.replace("GROUP ", "").replace("\r", "");
+            current_group = line.replace("GROUP ", "").trim().to_string();
         }
 
         if line.starts_with("FIELD ") {
@@ -75,8 +75,8 @@ pub fn get_all_template_fields(template_name: String) -> Vec<ReplaceField> {
                     if captures.len() == 3 {
                         fields.push(ReplaceField {
                             group: current_group.clone(),
-                            readable: captures.get(2).unwrap().as_str().to_string(),
-                            replace: captures.get(1).unwrap().as_str().to_string(),
+                            readable: captures.get(2).unwrap().as_str().trim().to_string(),
+                            replace: captures.get(1).unwrap().as_str().trim().to_string(),
                             value: None,
                         });
                     }
