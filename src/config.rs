@@ -1,12 +1,13 @@
-use crate::files;
-use regex::Regex;
-/**
+/***
  * @file config.rs
  * @brief A lib file used to interact with the config of the project
  * @date 31.03.2025
  * @version v1.0.0
  * @author Severin Sprenger (BakxY)
  */
+
+use crate::files;
+use regex::Regex;
 use std::fs;
 use std::path::{Path, PathBuf};
 

@@ -1,17 +1,17 @@
-use std::io::stdin;
-use std::io::stdout;
-use std::io::Write;
-use std::num::ParseIntError;
-
-use crate::config;
-/**
+/***
  * @file menu.rs
  * @brief A lib file to handle all menus
  * @date 31.03.2025
  * @version v1.0.0
  * @author Severin Sprenger (BakxY)
  */
+
+use crate::config;
 use crate::files;
+use std::io::Write;
+use std::io::stdin;
+use std::io::stdout;
+use std::num::ParseIntError;
 
 pub fn display_template_selection() {
     print!("{}[2J", 27 as char);
