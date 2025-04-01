@@ -13,7 +13,6 @@ mod files;
 mod config;
 
 fn main() {
-    let _ = files::get_templates();
     menu::display_template_selection();
     get_human_readable_name("letter".to_string());
 }

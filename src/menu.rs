@@ -14,6 +14,7 @@ pub fn display_template_selection() {
     println!("{}\n", files::get_template_location());
     println!("--------------------- TEMPLATES --------------------\n");
     display_all_templates();
+    println!("----------------------------------------------------\n");
 }
 
 fn display_all_templates() {
@@ -24,4 +25,6 @@ fn display_all_templates() {
 
         println!("  {}. {}", i + 1, human_readable);
     }
+
+    print!("\n");
 }
