@@ -11,8 +11,10 @@ mod files;
 mod menu;
 
 fn main() {
+    let all_templates = files::get_templates();
+
     loop {
-        menu::display_template_selection();
+        menu::display_template_selection(all_templates.clone());
         let selected_id = menu::select_template();
 
         //print!("{}", selected_id.unwrap());

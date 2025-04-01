@@ -13,12 +13,12 @@ use std::io::stdin;
 use std::io::stdout;
 use std::num::ParseIntError;
 
-pub fn display_template_selection() {
+pub fn display_template_selection(all_templates: Vec<String>) {
     print!("{}[2J", 27 as char);
     println!("-------------------- RUST-LATEX --------------------\n");
     println!("{}\n", files::get_template_location());
     println!("--------------------- TEMPLATES --------------------\n");
-    display_all_templates();
+    display_all_templates(all_templates);
     println!("----------------------------------------------------\n");
     println!("  Please select a template:");
     print!("  - ");
@@ -26,9 +26,7 @@ pub fn display_template_selection() {
     let _ = stdout().flush();
 }
 
-fn display_all_templates() {
-    let all_templates = files::get_templates();
-
+fn display_all_templates(all_templates: Vec<String>) {
     for i in 0..all_templates.len() {
         let human_readable =
             config::get_human_readable_name(all_templates.get(i).unwrap().to_string());
