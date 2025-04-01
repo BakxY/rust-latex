@@ -17,8 +17,6 @@ fn main() {
         menu::display_template_selection(all_templates.clone());
         let selected_id = menu::select_template();
 
-        //print!("{}", selected_id.unwrap());
-
         match selected_id {
             Ok(selected_id) => {
                 print!("Leaving {}", selected_id);
