@@ -1,3 +1,8 @@
+use std::io::stdin;
+use std::io::stdout;
+use std::io::Write;
+use std::num::ParseIntError;
+
 use crate::config;
 /**
  * @file menu.rs
@@ -9,11 +14,16 @@ use crate::config;
 use crate::files;
 
 pub fn display_template_selection() {
+    print!("{}[2J", 27 as char);
     println!("-------------------- RUST-LATEX --------------------\n");
     println!("{}\n", files::get_template_location());
     println!("--------------------- TEMPLATES --------------------\n");
     display_all_templates();
     println!("----------------------------------------------------\n");
+    println!("  Please select a template:");
+    print!("  - ");
+
+    let _ = stdout().flush();
 }
 
 fn display_all_templates() {
@@ -27,4 +37,14 @@ fn display_all_templates() {
     }
 
     print!("\n");
+}
+
+pub fn select_template() -> Result<u32, ParseIntError> {
+    let mut user_input = String::new();
+
+    let _ = stdin().read_line(&mut user_input);
+
+    let selected_id = user_input.trim().parse::<u32>();
+
+    return selected_id;
 }

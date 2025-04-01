@@ -10,7 +10,23 @@ mod menu;
  */
 
 fn main() {
-    menu::display_template_selection();
+    loop {
+        menu::display_template_selection();
+        let selected_id = menu::select_template();
+
+        //print!("{}", selected_id.unwrap());
+
+        match selected_id {
+            Ok(selected_id) => {
+                print!("Leaving {}", selected_id);
+                break;
+            }
+            _err => { 
+                continue;
+            }
+        }
+    }
+    
     config::get_human_readable_name("letter".to_string());
     config::get_all_template_fields("letter".to_string());
 }
