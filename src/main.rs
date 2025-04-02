@@ -15,13 +15,12 @@ fn main() {
 
     loop {
         menu::display_template_selection(all_templates.clone());
-        let selected_id = menu::select_template();
-
-        let selected_id = selected_id.unwrap_or_default();
-
-        if selected_id.clone() == 0 {
-            continue;
+        let selected_id = if let Ok(selected_id) = menu::select_template() {
+            selected_id
         }
+        else {
+            continue;
+        };
 
         let selected_template = if let Some(selected_template) = all_templates.get(selected_id - 1) {
             selected_template
