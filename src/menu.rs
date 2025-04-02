@@ -37,12 +37,12 @@ fn display_all_templates(all_templates: Vec<String>) {
     print!("\n");
 }
 
-pub fn select_template() -> Result<u32, ParseIntError> {
+pub fn select_template() -> Result<usize, ParseIntError> {
     let mut user_input = String::new();
 
     let _ = stdin().read_line(&mut user_input);
 
-    let selected_id = user_input.trim().parse::<u32>();
+    let selected_id = user_input.trim().parse::<usize>();
 
     return selected_id;
 }
