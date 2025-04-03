@@ -46,3 +46,11 @@ pub fn select_template() -> Result<usize, ParseIntError> {
 
     return selected_id;
 }
+
+pub fn get_field_value() -> String {
+    let mut user_input = String::new();
+
+    let _ = stdin().read_line(&mut user_input);
+
+    return user_input.trim().to_string();
+}
