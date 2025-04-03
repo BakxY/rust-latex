@@ -51,11 +51,14 @@ pub struct ReplaceField {
     value: Option<String>,
 }
 
-pub fn get_all_template_fields(template_name: String) -> Vec<ReplaceField> {
+pub type FieldGroup = String;
+
+pub fn get_all_template_fields(template_name: String) -> (Vec<ReplaceField>, Vec<FieldGroup>) {
     let path_to_config = build_template_config_path(template_name.clone());
     let config_lines = read_config(path_to_config);
 
     let mut fields: Vec<ReplaceField> = Vec::new();
+    let mut groups: Vec<FieldGroup> = Vec::new();
     let mut current_group = "".to_string();
 
     let field_regex = Regex::new(r#"FIELD\s+"([^"]+)"\s+"([^"]+)"#).unwrap();
@@ -65,6 +68,7 @@ pub fn get_all_template_fields(template_name: String) -> Vec<ReplaceField> {
 
         if line.starts_with("GROUP ") {
             current_group = line.replace("GROUP ", "").trim().to_string();
+            groups.push(current_group.clone());
         }
 
         if line.starts_with("FIELD ") {
@@ -87,5 +91,5 @@ pub fn get_all_template_fields(template_name: String) -> Vec<ReplaceField> {
         }
     }
 
-    return fields;
+    return (fields, groups);
 }

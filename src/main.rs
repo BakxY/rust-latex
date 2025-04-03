@@ -30,7 +30,6 @@ fn main() {
 
         let selected_template = selected_template.to_string();
 
-        config::get_human_readable_name(selected_template.clone());
-        config::get_all_template_fields(selected_template);
+        let (TemplateFields, TemplateGroups) = config::get_all_template_fields(selected_template);
     }
 }
