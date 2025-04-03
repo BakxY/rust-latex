@@ -45,10 +45,10 @@ pub fn get_human_readable_name(template_name: String) -> String {
 }
 
 pub struct ReplaceField {
-    group: String,
-    readable: String,
-    replace: String,
-    value: Option<String>,
+    pub group: String,
+    pub readable: String,
+    pub replace: String,
+    pub value: Option<String>,
 }
 
 pub type FieldGroup = String;
@@ -92,4 +92,20 @@ pub fn get_all_template_fields(template_name: String) -> (Vec<ReplaceField>, Vec
     }
 
     return (fields, groups);
+}
+
+pub fn get_group_fields(all_fields: Vec<ReplaceField>, group: FieldGroup) -> (Vec<ReplaceField>, Vec<ReplaceField>) {
+    let mut filtered_fields: Vec<ReplaceField> = Vec::new();
+    let mut all_fields_cleaned: Vec<ReplaceField> = Vec::new();
+
+    for field in all_fields {
+        if field.group == group {
+            filtered_fields.push(field);
+        }
+        else {
+            all_fields_cleaned.push(field);
+        }
+    }
+
+    return (all_fields_cleaned, filtered_fields);
 }

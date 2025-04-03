@@ -13,6 +13,8 @@ mod menu;
 fn main() {
     let all_templates = files::get_templates();
 
+    let mut selected_template_str = "".to_string();
+
     loop {
         menu::display_template_selection(all_templates.clone());
         let selected_id = if let Ok(selected_id) = menu::select_template() {
@@ -28,8 +30,23 @@ fn main() {
             continue;
         };
 
-        let selected_template = selected_template.to_string();
+        selected_template_str = selected_template.to_string();
 
-        let (TemplateFields, TemplateGroups) = config::get_all_template_fields(selected_template);
+        break;
     }
+
+    let (template_fields, template_groups) = config::get_all_template_fields(selected_template_str);
+    let mut template_fields_mod = template_fields;
+
+    for group in template_groups {
+        let (template_fields_cleaned, current_group_fields) = config::get_group_fields(template_fields_mod, group);
+
+        template_fields_mod = template_fields_cleaned;
+
+        for field in current_group_fields {
+            println!("{} {} {}", field.group, field.readable, field.replace);
+        }
+    }
+
+    print!("{}", template_fields_mod.len());
 }
