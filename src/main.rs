@@ -35,18 +35,9 @@ fn main() {
         break;
     }
 
-    let (template_fields, template_groups) = config::get_all_template_fields(selected_template_str);
-    let mut template_fields_mod = template_fields;
-
-    for group in template_groups {
-        let (template_fields_cleaned, current_group_fields) = config::get_group_fields(template_fields_mod, group);
-
-        template_fields_mod = template_fields_cleaned;
-
-        for field in current_group_fields {
-            println!("{} {} {}", field.group, field.readable, field.replace);
-        }
-    }
-
-    print!("{}", template_fields_mod.len());
+    let (template_fields, template_groups) = config::get_all_template_fields(selected_template_str.clone());
+    let selected_template_readable = config::get_human_readable_name(selected_template_str);
+    
+    menu::display_field_menu(selected_template_readable);
+    menu::get_all_field_values(template_groups, template_fields);
 }

@@ -63,3 +63,16 @@ pub fn get_field_value() -> String {
 
     return user_input.trim().to_string();
 }
+
+pub fn display_field_menu(selected_template_readable: String,) {
+    clear_cli();
+
+    println!("-------------------- RUST-LATEX --------------------\n");
+    println!("  Selected template: {}\n", selected_template_readable);
+    println!("--------------- TEMPLATE FIELD GROUPS --------------\n");
+    println!("  Fill in the following fields!\n");
+}
+
+pub fn get_all_field_values(all_groups: Vec<config::FieldGroup>, all_fields: Vec<config::ReplaceField>) {
+
+}
