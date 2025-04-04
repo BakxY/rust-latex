@@ -47,6 +47,11 @@ pub fn select_template() -> Result<usize, ParseIntError> {
     return selected_id;
 }
 
+pub fn move_coursor(x: u32, y: u32) {
+    print!("\x1B[{};{}H", x, y);
+    let _ = stdout().flush();
+}
+
 pub fn get_field_value() -> String {
     let mut user_input = String::new();
 
