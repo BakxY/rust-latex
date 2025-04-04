@@ -14,7 +14,7 @@ use std::io::stdout;
 use std::num::ParseIntError;
 
 pub fn display_template_selection(all_templates: Vec<String>) {
-    print!("{}[2J", 27 as char);
+    clear_cli();
     println!("-------------------- RUST-LATEX --------------------\n");
     println!("{}\n", files::get_template_location());
     println!("--------------------- TEMPLATES --------------------\n");
@@ -50,6 +50,10 @@ pub fn select_template() -> Result<usize, ParseIntError> {
 pub fn move_coursor(x: u32, y: u32) {
     print!("\x1B[{};{}H", x, y);
     let _ = stdout().flush();
+}
+
+pub fn clear_cli() {
+    print!("{}[2J", 27 as char);
 }
 
 pub fn get_field_value() -> String {
