@@ -48,7 +48,7 @@ pub struct ReplaceField {
     pub group: String,
     pub readable: String,
     pub replace: String,
-    pub value: Option<String>,
+    pub value: String,
 }
 
 pub type FieldGroup = String;
@@ -82,7 +82,7 @@ pub fn get_all_template_fields(template_name: String) -> (Vec<ReplaceField>, Vec
                             group: current_group.clone(),
                             readable: captures.get(2).unwrap().as_str().trim().to_string(),
                             replace: captures.get(1).unwrap().as_str().trim().to_string(),
-                            value: None,
+                            value: "".to_string(),
                         });
                     }
                 }

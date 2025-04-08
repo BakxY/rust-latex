@@ -39,5 +39,5 @@ fn main() {
     let selected_template_readable = config::get_human_readable_name(selected_template_str);
     
     menu::display_field_menu(selected_template_readable);
-    menu::get_all_field_values(template_groups, template_fields);
+    let filled_fields = menu::get_all_field_values(template_groups, template_fields);
 }
