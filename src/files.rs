@@ -7,6 +7,7 @@
  */
 
 use std::fs;
+use std::path::{Path, PathBuf};
 
 const TEMPLATE_DIR: &str = "templates/";
 
@@ -29,4 +30,10 @@ pub fn get_templates() -> Vec<String> {
     }
 
     return templates;
+}
+
+pub fn read_tex_template_file(path_to_tex_file: PathBuf) -> String {
+    let config_file = fs::read_to_string(path_to_tex_file).unwrap();
+
+    return  config_file;
 }
