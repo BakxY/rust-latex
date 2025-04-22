@@ -9,6 +9,7 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 use crate::config;
+use crate::files;
 
 const TEMPLATE_DIR: &str = "templates/";
 
@@ -52,4 +53,17 @@ pub fn populate_tex_template_fields(config_file_string: String, all_filled_field
 
 pub fn write_template(populated_tex_template: String) {
     let _ = fs::write("main.tex", populated_tex_template);
+}
+
+pub fn copy_all_template_files(template_name: String) {
+    let base_path = files::get_template_location();
+
+    let path_to_template_folder = Path::new(base_path.as_str())
+        .join(template_name.clone());
+
+    let _ = fs::copy(path_to_template_folder, "."); //! Doesn't work
+
+    let path_to_tex = config::get_template_tex_file(template_name);
+
+    let _ = fs::remove_file(path_to_tex);
 }

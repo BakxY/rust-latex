@@ -110,8 +110,8 @@ pub fn get_group_fields(all_fields: Vec<ReplaceField>, group: FieldGroup) -> (Ve
     return (all_fields_cleaned, filtered_fields);
 }
 
-pub fn get_template_tex_location(template_name: String) -> PathBuf {
-    let path_to_config = build_template_config_path(template_name.clone());
+pub fn get_template_tex_file(template_name: String) -> String {
+    let path_to_config = build_template_config_path(template_name);
     let config_lines = read_config(path_to_config);
 
     let mut tex_file_read_path = "".to_string();
@@ -124,11 +124,17 @@ pub fn get_template_tex_location(template_name: String) -> PathBuf {
         }
     }
 
+    return tex_file_read_path;
+}
+
+pub fn get_template_tex_location(template_name: String) -> PathBuf {
+    let tex_file_read_path = get_template_tex_file(template_name.clone());
+
     let base_path = files::get_template_location();
 
-    let path_to_config = Path::new(base_path.as_str())
+    let path_to_tex = Path::new(base_path.as_str())
         .join(template_name)
         .join(tex_file_read_path);
 
-    return path_to_config;
+    return path_to_tex;
 }

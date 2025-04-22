@@ -47,5 +47,6 @@ fn main() {
 
     let filled_latex_file = files::populate_tex_template_fields(raw_latex_file, filled_fields);
 
+    files::copy_all_template_files(selected_template_str);
     files::write_template(filled_latex_file);
 }
