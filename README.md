@@ -21,4 +21,4 @@ This project serves a dual purpose:
 ## Getting Started
 
 > [!NOTE]
-> Will come one a working version is released!
+> Will come once a working version is released!

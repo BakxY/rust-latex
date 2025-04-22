@@ -49,3 +49,7 @@ pub fn populate_tex_template_fields(config_file_string: String, all_filled_field
 
     return config_file;
 }
+
+pub fn write_template(populated_tex_template: String) {
+    let _ = fs::write("main.tex", populated_tex_template);
+}
